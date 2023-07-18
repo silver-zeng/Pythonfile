@@ -1,0 +1,52 @@
+.banner{
+    width: 880px;
+    height: 230px;
+    position: relative;
+}
+.banner .pic li{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.banner .pic img{
+    width: 880px;
+    height: 230px;
+}
+.banner .tab{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    /*剪掉盒子的一半宽度*/
+    margin-left: -56px;
+}
+.banner .tab li{
+    width: 20px;
+    height: 20px;
+    border: 1px solid red;
+    float: left;
+    margin: 5px;
+    border-radius: 50%;
+    /*20*4+1*8+25*/
+}
+/*只要选择我就给一个背景色*/
+.banner .tab li.on{
+    background: aqua;
+}
+
+.banner .btn li i{
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    color: white;
+    display: none;
+}
+.banner .btn li.left i{
+    left: 0;
+}
+.banner .btn li.right i{
+    right: 0;
+}
+.banner:hover .btn li i{
+    display: block;
+}

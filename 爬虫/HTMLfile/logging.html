@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .waikuang{
+            position: relative;
+            border:5px solid cornflowerblue;
+            padding: 75px;
+
+
+        }
+         .waikuang div{
+            /*text-align:justify;*/
+            display: flex;
+            /*align-items: center;*/
+             margin: 0;
+
+
+        }
+        p{
+            width: 100px;
+            margin: 5px;
+            padding: 0;
+            color: tomato;
+            font-size: 12px;
+        }
+        .app{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            border-width: 5ex;
+            border-style: solid;
+            border-color: cadetblue;
+            box-sizing: border-box;
+            background-image:url("image/loging.jpg");
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            margin: 0;
+        }
+        h3:hover{
+            color: green;
+        }
+        a{
+            text-decoration:none;
+            margin: 0;
+            font-size: 15px;
+        }
+        .button {
+            background-color: cornflowerblue; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            border-radius: 10px;
+            height: 25px;
+        }
+        .button:hover{
+            opacity: 0.9;
+        }
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+}
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <div class="waikuang">
+        <div style="position: absolute;top:0;left:0;font-weight:bold;color: red;font-size: 18px ">请登录</div>
+        <div style="position: absolute;top:0;right:0;"><a href="register.html"><h3 style="margin: 0">去注册</h3></a></div>
+
+        <div>
+           <input type="text" placeholder="请输入用户名">
+        </div>
+
+        <div>
+            <input type="password" placeholder="请输入密码">
+        </div>
+        <div>
+            <input id="s1" type="checkbox"  value="0" style="line-height: 30px">&numsp;<p>七天内自动登录</p>
+        </div>
+        <div>
+            <button class="button" style="margin: 80px auto;width: 100px">登录</button>
+        </div>
+    </div>
+</div>
+<span id="time" style="float: right;"></span>
+<!--   引入JQ    -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script>
+    var box1=document.getElementById("s1").value
+    // document.getElementById("s1").onclick=()=>{
+    //     alert("选择了七天自动登录哈~~");
+    //     console.log(box1);
+    // }
+    // while (1===1){
+
+    document.getElementById("s1").onclick=function(){
+    if (box1==0){
+        document.querySelector('p').style.color='cornflowerblue';
+        console.log("你选择了七天免登录~~");
+        box1=1}
+    else{
+        console.log("你取消选择了哦~~");
+        document.querySelector('p').style.color='red';
+        box1=0
+    }}
+
+function showtime() {
+    var data = new Date()
+    var year = data.getFullYear()
+    var mon = data.getMonth() + 1 // 月份是从11开始，所以+1
+    var date = data.getDate() // 获取日期
+    var week = data.getDay() // 获取星期几
+    week = "日一二三四五六".charAt(week) // 根据date.getDay()获取的数字星期几作为序号，获取字符串中文星期几
+    var hour = data.getHours()
+    hour = hour < 10 ? "0" + hour : hour; // 用三目运算符调整数字显示格式
+    var minu = data.getMinutes()
+    minu = minu<10 ? "0" + minu : minu
+    var seco = data.getSeconds()
+    seco = seco<10 ? "0" + seco : seco
+    var current = year + "-" + mon+ "-" + date+ " " + "星期" + week + " " + hour + ":" + minu + ":" + seco;
+    document.getElementById("time").innerHTML = current;
+}
+    setInterval("showtime()", 1000); //定时器。一秒钟刷新一次
+</script>
+</body>
+</html>

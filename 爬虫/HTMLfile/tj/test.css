@@ -1,0 +1,34 @@
+.content{
+    width: 880px;
+    /*height: 230px;*/
+    background: rosybrown;
+    font-size: 14px;
+}
+
+.content .recommend-news li a img{
+    width: 200px;
+    height: 130px;
+    transition:all 2s;     /* 后面在加上 */
+}
+
+.content .recommend-news{
+    display: flex; /* 加在父类 弹性模型 */
+    justify-content: space-around; /* 给每一个盒子都加上边框 */
+     /*justify-content: space-between;!*不会给你算两边的*!*/
+    padding: 10px 10px 0 10px;
+}
+
+.content .recommend-news li p{
+    text-align: center;
+    line-height: 35px;
+}
+.content .recommend-news li>a{  /* 找他的子元素 */
+    width: 200px;
+    height: 130px;  /* a的宽度和图片一样 */
+    overflow: hidden; /* 超出隐藏 */
+    display: block; /* a标签不能直接设置 要变成block */
+}
+.content .recommend-news li a img:hover{
+    transform: scale(2);
+}
+/*jq 的hover要结合事件函数才行*/

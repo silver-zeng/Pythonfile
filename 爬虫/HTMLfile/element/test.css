@@ -1,0 +1,70 @@
+.news-nav .nav{
+    width: 880px;
+    height: 46px;
+    line-height: 50px;
+    background: #fff2b9;
+}
+.news-nav .nav > li{
+    float: left;
+    height: 46px;
+    padding: 0 20px;
+}
+
+.news-nav .nav > li:hover{
+    cursor: pointer;/*  划入的时候变成手指状态  字体划入变手指 */
+}
+.news-nav .nav >li.active{
+    border-bottom: 3px solid red;
+    box-sizing: border-box;
+}
+.news-nav .contain li>div{
+    margin: 0 0 10px 0;
+    width: 880px;
+    height: 160px;
+    display: inline-flex;
+
+}
+
+.news-nav .contain li div .left img{
+    width: 240px;
+    height: 170px;
+
+}
+.news-nav .contain li div .left{
+    float: left;
+    width: 260px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 5px;
+}
+.news-nav .contain li div .right{
+    float: left;
+    line-height: 35px;
+    padding: 26px 0 0 0;
+    width: 535px;/* 后去如果给他规定了父类盒子要设置一下宽度不软会几道下一行去 */
+}
+.news-nav .contain li div .right p{
+    font-size: 15px; /* 按自己喜好调整 */
+}
+.news-nav .contain li div .right span{
+    color:rosybrown;
+    padding-right: 10px;
+}
+.news-nav .contain li{
+    display: none;
+}
+.news-nav .contain li.show{
+    display: block;
+    width: 880px;
+    height: 350px;
+}
+.more{
+    width: 400px;
+     margin-left:200px ;
+    /*margin: auto; */
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    background: deepskyblue;
+}
