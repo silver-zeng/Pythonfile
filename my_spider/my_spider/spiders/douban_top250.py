@@ -10,7 +10,7 @@ class DoubanTop250Spider(scrapy.Spider):
     page = 0
     def parse(self, response):
         node_list= response.xpath('//div[@class="info"]')
-        if self.page <= 10:
+        if self.page <= 2:
             for i in node_list:
                 movie_title = i.xpath('./div/a/span/text()').get()  # 标题
                 director = i.xpath('./div/p/text()').get().strip().replace('NBSP;',' ')  # 导演名称
