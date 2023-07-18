@@ -1,0 +1,99 @@
+.header{
+    width: 100%;
+    height: 70px;
+    background: black;
+    color: white;
+}
+.header .header-contain{
+    width: 1200px;
+    margin: auto;
+    height: 70px;
+    line-height: 70px;
+    background: black;
+}
+.header .header-contain .logo{
+    width: 260px;
+    height: 70px;
+    float: left;
+
+}
+.header .header-contain .logo .login-title{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url("https://www.python.org/static/img/python-logo.png") no-repeat;
+}
+.header .header-contain .menu{
+    float: left;
+    margin-left: 150px;
+
+}
+.header .header-contain .menu li{
+    float: left;
+    height: 70px;
+}
+
+.header .header-contain .menu li a{
+    padding: 0 30px;
+}
+
+.header .header-contain .menu li:hover{
+    border-bottom: 5px solid red;
+    box-sizing: border-box;
+}
+.header .header-contain .menu li.active{
+    border-bottom: 5px solid red;
+    box-sizing: border-box;
+}
+/*登录注册*/
+.header .header-contain .login-box{
+    float: right;
+}
+.header .header-contain .login-box i{
+    font-size:22px;
+    color: #58b2ff;
+    /*垂直方向对齐*/
+    vertical-align: -2px;
+}
+
+/*主体部分*/
+.main{
+    width: 100%;
+    margin: 20px 0;
+    box-sizing: border-box;
+}
+.main .main-box{
+    width: 1200px;
+    height: 100%;
+    margin: auto;
+    padding: 0;
+    background: rgb(240,240,240);
+    position: relative;
+    top: auto;
+    left: auto;
+}
+
+
+/*页脚内容*/
+.footer{
+    width: 100%;
+    background: rgb(97,98,109);
+}
+.footer .foot-box{
+    width: 1200px;
+    margin: auto;
+    text-align: center;
+    color: #FFA800;
+}
+.footer .foot-box .footer-content{
+    line-height: 35px;
+    padding: 20px 0;
+     background: url("https://www.python.org/static/img/python-logo.png") no-repeat 50px 15px;
+}
+.footer .bottom-content{
+    background: black;
+    text-align: center;
+    line-height: 35px;
+    color: red;
+    width: 100%;
+}

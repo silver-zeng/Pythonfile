@@ -1,0 +1,66 @@
+    /*大盒子*/
+    .res-login{
+      width: 500px;
+      height: 500px;
+      margin:auto;
+      border: 1px solid grey;
+      padding: 20px 20px;
+      border-radius: 5px;
+
+    }
+    /*分界线*/
+    .res-login p{
+      border-bottom: 1px solid grey;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+    /*设置字体与下边框*/
+    .res-login p span{
+      font-size: 20px;
+      border-bottom: 4px solid rgb(131,48,207);
+      padding-bottom:5px;
+    }
+    /*操作a标签*/
+    .res-login p a{
+      font-size: 20px;
+      float: right;
+      color: green;
+      text-decoration: none;
+    }
+    .res-login form input{
+      width: 489px;
+      height: 40px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid grey;
+      font-size: 18px;
+      padding-left: 10px;
+    }
+    .res-login form .msg_img{
+      width: 320px;
+    }
+    .res-login form a{
+      display: block;
+      border: 1px solid purple;
+      border-radius: 5px;
+      height: 40px;
+      width: 155px;
+      float: right;
+      margin-top: 10px;
+      text-decoration: none;
+      text-align: center;
+      line-height: 40px;
+    }
+    .res-login form a img{
+      height: 40px;
+      width: 155px;
+      border-radius: 5px;
+    }
+    .res-login form #box{
+      background: rgb(0,191,254);
+      border: 1px solid rgb(0,191,254);
+      height: 50px;
+      width: 500px;
+      font-size: 20px;
+      color: white;
+    }

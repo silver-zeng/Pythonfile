@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>曾大大注册</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        .waikuang{
+            position: relative;
+            border:5px solid mintcream;
+            padding: 60px 60px 20px 60px;
+
+        }
+         .waikuang div{
+            /*text-align:justify;*/
+            display: flex;
+            align-items: center;
+             margin: 0;
+
+
+        }
+        p{
+            width: 60px;
+            margin: 0;
+            padding: 0;
+            height: 20px;
+            text-align: justify;
+        }
+        .app{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            border-width: 5ex;
+            border-style: solid;
+            border-color: cadetblue;
+            box-sizing: border-box;
+            background-image:url("image/背景.jpg");
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            margin: 0;
+        }
+        h3:hover{
+            color: deepskyblue;
+        }
+        a{
+            text-decoration:none;
+            margin: 0;
+            font-size: 15px;
+        }
+        .button {
+            background-color: cornflowerblue; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            border-radius: 10px;
+            height: 25px;
+        }
+        .button:hover{
+            opacity: 0.9;
+        }
+        .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <div class="waikuang">
+        <div style="position: absolute;top:0;left:0;font-weight:bold; ">请注册</div>
+        <div style="position: absolute;top:0;right:0;"><a href="logging.html"><h3 style="margin: 0">去登录</h3></a></div>
+
+        <div>
+            <p>用户名:</p><input type="text" placeholder="请输入用户名">
+        </div>
+
+        <div>
+            <p>密码:</p><input type="password" placeholder="请输入密码">
+        </div>
+        <div>
+            <p>手机号:</p><input type="text" placeholder="请输入手机号"><button class="button">获取验证码</button>
+        </div>
+        <div>
+            <p>验证码:</p><input type="text" placeholder="请输入验证码">
+        </div>
+        <div>
+            <p>性别:</p>男<input type="radio" name="colors" value="男">&numsp;女<input type="radio" name="colors" value="女">
+        </div>
+        <div>
+            <p>爱好:</p>唱<input type="checkbox" >&numsp;跳<input type="checkbox">&numsp;rap<input type="checkbox">&numsp;篮球<input type="checkbox">
+        </div>
+        <div>
+            <button class="button" style="margin: 55px auto;width: 100px">提交注册</button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
