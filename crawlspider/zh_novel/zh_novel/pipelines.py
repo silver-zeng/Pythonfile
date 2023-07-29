@@ -2,12 +2,14 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-
+import datetime
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import pymysql
-from .items import ZhNovelItem,ChapterItem
+from scrapy.exceptions import DropItem
+
+from .items import ZhNovelItem,ChapterItem,ContentItem
 
 class ZhNovelPipeline:
     def open_spider(self, spider):
@@ -38,9 +40,28 @@ class ZhNovelPipeline:
                 ))
                 self.conn.commit()
             return item
+        # 判断是不是ChapterItem小说章节信息
         elif isinstance(item, ChapterItem):
-            pass
-
+            data_list = []
+            sql = 'insert into novel_chapter(title,ordernum,chapter_url,catalog_url,c_time) values (%s,%s,%s,%s,%s)'
+            for index,chapter in enumerate(item.get('chapter_list')):
+                c_time = datetime.datetime.now()
+                # 章节序号
+                ordernum = index+1
+                # 拆包，分别存chapter为元祖
+                title, chapter_url, catalog_url = chapter
+                data_list.append((title, ordernum, chapter_url, catalog_url, c_time))
+            self.cursor.executemany(sql, data_list)
+            self.conn.commit()
+        elif isinstance(item,ContentItem):
+            sql = 'update novel_chapter set conternt=%s where chapter_url =%s'
+            content = item.get('content')
+            chapter_url = item.get('chapter_url')
+            self.cursor.execute(sql, (content, chapter_url))
+            self.conn.commit()
+            return item
+        else:
+            return DropItem
 
     def close_spider(self, spider):
         # 关闭连接

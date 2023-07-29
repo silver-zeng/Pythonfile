@@ -22,3 +22,7 @@ class ZhNovelItem(scrapy.Item):
 
 class ChapterItem(scrapy.Item):
     chapter_list = scrapy.Field()
+
+class ContentItem(scrapy.Item):
+    chapter_url = scrapy.Field()
+    content = scrapy.Field()
