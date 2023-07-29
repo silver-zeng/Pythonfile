@@ -14,7 +14,7 @@ from ..items import ZhNovelItem,ChapterItem
 class ZonghengSpider(CrawlSpider):
     name = "zongheng"
     allowed_domains = ["book.zongheng.com"]
-    start_urls = ["https://book.zongheng.com/store/c0/c0/b0/u0/p1/v9/s1/t0/u0/i1/ALL.html"]  # 小说列表
+    start_urls = ["https://book.zongheng.com/store/c0/c0/b0/u0/p1/v9/s1/t0/u0/i1/ALL.html"]  # 小说列表,翻页https://book.zongheng.com/store/c0/c0/b0/u0/p{页数}}/v9/s1/t0/u0/i1/ALL.html
 
     rules = (
         #  小说详情页
