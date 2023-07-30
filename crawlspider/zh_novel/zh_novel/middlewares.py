@@ -2,11 +2,14 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import random
 
+import requests
 from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+from My_config import user_agent_list
 
 
 class ZhNovelSpiderMiddleware:
@@ -101,3 +104,18 @@ class ZhNovelDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
+
+# 自定义的类需要在setting的DOWNLOADER_MIDDLEWARES添加注册
+class User_AgentMiddleware:
+    # 从user_agent_list随机获取一个user-agent伪装
+    def process_request(self, request, spider):
+        request.headers['User-Agent'] = random.choice(user_agent_list)
+        return None
+
+class ProxyMiddleware:
+    # 从流冠官网api随机获取一个ip
+    def process_request(self, request, spider):
+        url='http://ecs.hailiangip.com:8422/api/getIpEncrypt?dataType=1&encryptParam=SlDyzgfgDW12vuaMHmQkMz9pKEmWH7kDAoD1ZC4KkxpHXuvLm%2B3L9xWaasGPtq4ToBLdEhC0fc8Cl3Rk7UuZyG25yJU7qaNHua2FDWHe9PJHJHwIXpXaJ0%2FambDJtU%2FA15qKLtNiqA6CuATqLBz%2BYxauUKrUKPonN4D%2FUXe1xVUfFaJxyBo8680oTdrXHKDtWhSglUCiFW5HEXHAbvQib9zbJ280PfgKxcbaM9RRtYCtxFCQehkdZXg2FiRfhV0V'
+        data = requests.get(url)
+        request.meta['proxy'] = 'https://' + data.text
+        return None

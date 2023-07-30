@@ -40,20 +40,21 @@ ROBOTSTXT_OBEY = False
 DEFAULT_REQUEST_HEADERS = {
    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
    "Accept-Language": "en",
-   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
+   # "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
 }
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    "zh_novel.middlewares.ZhNovelSpiderMiddleware": 543,
-#}
+# SPIDER_MIDDLEWARES = {
+#    "zh_novel.middlewares.User_AgentMiddleware": 543,
+# }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    "zh_novel.middlewares.ZhNovelDownloaderMiddleware": 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   "zh_novel.middlewares.User_AgentMiddleware": 543,
+   "zh_novel.middlewares.ProxyMiddleware": 550,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

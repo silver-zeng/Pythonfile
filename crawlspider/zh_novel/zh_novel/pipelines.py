@@ -54,7 +54,7 @@ class ZhNovelPipeline:
             self.cursor.executemany(sql, data_list)
             self.conn.commit()
         elif isinstance(item,ContentItem):
-            sql = 'update novel_chapter set conternt=%s where chapter_url =%s'
+            sql = 'update novel_chapter set content=%s where chapter_url =%s'
             content = item.get('content')
             chapter_url = item.get('chapter_url')
             self.cursor.execute(sql, (content, chapter_url))
