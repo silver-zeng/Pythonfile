@@ -117,9 +117,7 @@ class SetUI(object):
             'Referer': 'http://www.kuwo.cn/search/list?key=%E5%91%A8%E6%9D%B0%E4%BC%A6',
             'User-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/99.0.4844.51 Safari/537.36',
-            'Cookie': '_ga=GA1.2.218753071.1648798611; _gid=GA1.2.144187149.1648798611; _gat=1; '
-                      'Hm_lvt_cdb524f42f0ce19b169a8071123a4797=1648798611; '
-                      'Hm_lpvt_cdb524f42f0ce19b169a8071123a4797=1648798611; kw_token=HH3GHIQ0RYM'
+            'Cookie': 'Hm_lvt_cdb524f42f0ce19b169a8071123a4797=1692093240; Hm_lpvt_cdb524f42f0ce19b169a8071123a4797=1692093240; _ga=GA1.2.1261222962.1692093241; _gid=GA1.2.425319323.1692093241; _gat=1; _ga_ETPBRPM9ML=GS1.2.1692093241.1.0.1692093241.60.0.0; Hm_Iuvt_cdb524f42f0cer9b268e4v7y734w5esq24=NsrJNnJkjBeGpp8xtBxFpj8NXtQM5kfn'
         }
         search_input = self.ui_url.get()
         if len(search_input) > 0:

@@ -1,8 +1,8 @@
 import schedule
 import time
 import smtplib
-from myemailtest.mime.text import MIMEText
-from myemailtest.header import Header
+from 自动发邮件案例.mime.text import MIMEText
+from 自动发邮件案例.header import Header
 
 
 def send_email():

@@ -13,9 +13,9 @@ def send_email():
     with open('./test1.txt', 'r', encoding='utf-8') as f:
         x = f.read()  # 读取文本内容
     msg = MIMEText(x)  # 发送邮件内容
-    msg['Subject'] = Header('Test Email', 'utf-8')
+    msg['Subject'] = Header('Test Email:微博热搜50', 'utf-8')
     msg['From'] = '598725443@qq.com'  # 发件人
-    msg['To'] = '598725443@qq.com'  # 收件人
+    msg['To'] = '1224900587@qq.com'  # 收件人
 
     # 发送邮件
     with SMTP_SSL('smtp.qq.com', 465) as server:
@@ -40,12 +40,12 @@ def parch():
 
 
 # 定义定时任务
-schedule.every().day.at("13:00").do(parch)   # 定时调用parch函数
-schedule.every().day.at("13:00").do(send_email)  # 设置每天的定时发送时间
+schedule.every().day.at("10:14").do(parch)   # 定时调用parch函数
+schedule.every().day.at("10:14").do(send_email)  # 设置每天的定时发送时间
 
 # 循环执行定时任务
 while True:
     schedule.run_pending()  # 运行待执行的定时任务
     time.sleep(1)  # 等待1秒，避免过于频繁的检查
-    with open('./test1.txt', 'w') as f: #清空文本内容
-        f.write('')
+    with open('./test1.txt', 'w', encoding='utf-8') as f: #清空文本内容
+        f.write('热搜TOP50\n')
