@@ -1,3 +1,5 @@
+import os
+
 import requests,re
 url='https://image.baidu.com/search/albumsdata?pn=30&rn=30&tn=albumsdetail&word=%E8%9B%8B%E7%B3%95&album_tab=%E4%BA%BA%E7%89%A9&album_id=45&ic=0&curPageNum=1'
 header={
@@ -11,7 +13,12 @@ num=0
 for i in img_list:
     img_url=str(i).replace('\\','')  #将脏的图片url处理
     img=requests.get(img_url) # 发送图片请求
-    with open('download/{}.jpeg'.format(num),'wb') as f:
+    path = "./image/"
+
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print(f"Folder '{path}' created.")
+    with open('image/{}.jpeg'.format(num),'wb') as f:
         f.write(img.content)
         num+=1
 print("图片爬取完成")
