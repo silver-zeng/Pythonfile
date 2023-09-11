@@ -11,7 +11,7 @@ from Chaojiying_Python.chaojiying import Chaojiying_Client
 def chaojiying(imag):
     chaojiying = Chaojiying_Client(username=598725443, password="zengfanyu1314..",soft_id='950569')  # 用户中心>>软件ID 生成一个替换 96001
     im = open(imag, 'rb').read()  # 本地图片文件路径 来替换 a.jpg 有时WIN系统须要//
-    resp = chaojiying.PostPic(im, 6001)
+    resp = chaojiying.PostPic(im, 6001)  # 9004 为点触验证码，返回坐标
     return resp
 driver=webdriver.Chrome()
 url='https://test.yiscs.cn/general/login?redirect=%2Fapps'

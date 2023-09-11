@@ -3,6 +3,11 @@
 
 import requests
 from hashlib import md5
+from selenium import webdriver
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+
+driver = webdriver.Chrome()
 
 class Chaojiying_Client(object):
 
@@ -58,6 +63,15 @@ class Chaojiying_Client(object):
         r = requests.post('http://upload.chaojiying.net/Upload/ReportError.php', data=params, headers=self.headers)
         return r.json()
 
+    #  自定义方法————————————————点触验证码方法,返回坐标index，xpath为验证码图片对象
+    def img_click(self, xpath, index):
+        img_element = driver.find_element(By.XPATH,xpath)
+        for i in index:
+            data = i.split(",")
+            x = int(data[0])
+            y = int(data[1])
+            # 执行动作链，move_to_element_with_offset（对象【参照物】，点击的坐标）
+            ActionChains(driver).move_to_element_with_offset(img_element, x, y).click().perform()
 
 if __name__ == '__main__':
     chaojiying = Chaojiying_Client('silver', 'zengfanyu1314', '96001')	#用户中心>>软件ID 生成一个替换 96001
