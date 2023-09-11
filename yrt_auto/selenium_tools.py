@@ -20,9 +20,9 @@ actions.click()
 # 执行操作
 actions.perform()
 # 点触验证码
-def img_click(xpath):
+def img_click(xpath, index_list):
     img_element = driver.find_element(By.XPATH,xpath)
-    for i in img_list:
+    for i in index_list:
         data = i.split(",")
         x = int(data[0])
         y = int(data[1])
