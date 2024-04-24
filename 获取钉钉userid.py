@@ -38,7 +38,7 @@ def get_userid():
         url="https://oapi.dingtalk.com/topapi/user/listid",
         params={
             "access_token": get_access_token(),
-            "dept_id": "901247231",
+            "dept_id": "665117378",
         }
     )
     print('获取部门下所有用户userid的响应日志：' + str(res.json()))
@@ -57,7 +57,7 @@ def get_user_detail():
         print('获取用户详情的响应日志：' + str(res.json()))
         # 打印用户的userid和姓名和部门
         # 导出excel
-        print(str(userid) + ',' + res.json()["result"]["name"] + ',' + str(res.json()["result"]["dept_id_list"][0]), file=open("风控部.csv", "a"))
+        print(str(userid) + ',' + res.json()["result"]["name"] + ',' + str(res.json()["result"]["dept_id_list"][0]), file=open("技术部.csv", "a"))
 
 get_user_detail()
 
