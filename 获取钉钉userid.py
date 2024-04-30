@@ -6,7 +6,7 @@
 # "appsecret": "PGwrVxfDsOBFgfKGGcf-xy3r0XxcBMfsaieovinldVOEAm_iFReLDmbafXBJymVG",
 # "robotCode": "dingmhz9zth1mqz4k6gp"
 
-
+import pandas as pd
 import requests
 
 # 获取钉钉访问的access_token
@@ -33,12 +33,13 @@ def get_dept_id():
 
 
 # 获取部门下所有用户userid，47804716直属营业部，473594099保理基建部
-def get_userid():
+def get_userid(dept_id):
     res = requests.get(
         url="https://oapi.dingtalk.com/topapi/user/listid",
         params={
             "access_token": get_access_token(),
-            "dept_id": "665117378",
+            # 部门id
+            "dept_id": dept_id,
         }
     )
     print('获取部门下所有用户userid的响应日志：' + str(res.json()))
@@ -46,7 +47,11 @@ def get_userid():
 
 # 获取用户详情
 def get_user_detail():
-    for userid in get_userid():
+    filename = "行政人事部门.xlsx"
+    all_data = []
+    # 修改部门id
+    dept_id =912704041
+    for userid in get_userid(dept_id):
         res = requests.get(
             url="https://oapi.dingtalk.com/topapi/v2/user/get",
             params={
@@ -56,8 +61,22 @@ def get_user_detail():
         )
         print('获取用户详情的响应日志：' + str(res.json()))
         # 打印用户的userid和姓名和部门
-        # 导出excel
-        print(str(userid) + ',' + res.json()["result"]["name"] + ',' + str(res.json()["result"]["dept_id_list"][0]), file=open("技术部.csv", "a"))
-
+        # 导出csv
+        # with open(filename, "a") as f:
+        #     title = res.json()["result"].get("title", "")
+        #     line = f'{str(userid)},{res.json()["result"]["name"]},{str(res.json()["result"]["mobile"])},{title if title else ""},{str(res.json()["result"]["dept_id_list"][0])}\n'
+        #     f.write(line)
+        # print(str(userid) + ',' + res.json()["result"]["name"] + ',' + str(res.json()['result']['mobile'])+',' + str(res.json()["result"]["title"]) + "," + str(res.json()["result"]["dept_id_list"][0]), file=open("产品部.csv", "a"))
+        data = {
+            "用户": userid,
+            "姓名": res.json()["result"]["name"],
+            "手机号": res.json()['result']['mobile'],
+            "岗位": res.json()["result"].get("title", ""),
+            "部门id": res.json()["result"]["dept_id_list"][0]
+        }
+        # 将数据添加到列表
+        all_data.append(data)
+        df = pd.DataFrame(all_data)
+        # df.columns = ["用户", "姓名", "手机号", "岗位", "部门id"]
+        df.to_excel(filename, index=False)
 get_user_detail()
-
