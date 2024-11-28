@@ -108,5 +108,4 @@ class CoalSettlement():
             print(f"云星空结算单编号不存在,未定位到元素{e}")
 
 
-
 CoalSettlement().create_settlement()
