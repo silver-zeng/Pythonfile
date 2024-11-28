@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver import ActionChains  # 导入动作链
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait  # 显示等待  WebDriverWait(driver,timeout,poll_frequency=0.5,ignored_exceptions=None).until(EC.presence_of_element_located(元素xpath),message="报错信息")
 from selenium.webdriver.common.keys import Keys # 处理键盘事件的类
@@ -44,8 +46,9 @@ class CoalSettlement():
     def open_file(file_path):
         data = pd.read_excel(file_path)
         print(data['项目编号'].values[0], data['结算单编号'].values[0])
+        return data
     def create_settlement(self):
-        CoalSettlement.open_file(file_path="../煤炭结算自动化数据.xlsx")
+        data = CoalSettlement.open_file(file_path="../煤炭结算自动化数据.xlsx")
         CoalSettlement.login(self, username='admin', password='qwe123')
         time.sleep(5)
         # wd是webdriver对象，20是最长等待时间，0.5是每0.5秒去查询对应的元素。until后面跟的等待具体条件，EC是判断条件，检查元素是否存在于页面的 DOM 上。
@@ -63,7 +66,46 @@ class CoalSettlement():
         # 点击批量核销按钮
         self.driver.find_element(By.XPATH, "//button/span[text()=' 批量核销 ']").click()
         time.sleep(3)
-        CoalSettlement.makedir_current_save_image(self, f"coal_settlement_batch_writeoff{CoalSettlement.timenow}.png")
+        # 批量核销截图
+        CoalSettlement.makedir_current_save_image(self, f"点击批量核销{CoalSettlement.timenow}.png")
+        time.sleep(2)
+        self.driver.find_element(By.XPATH, "//div/input[@placeholder='查找项目']").click()
+        time.sleep(2)
+        # 输入查询项目编号
+        ProjectNo = data['项目编号'].values[0]
+        self.driver.find_element(By.XPATH, "//div/input[@placeholder='项目']").send_keys(ProjectNo)
+        time.sleep(4)
+        try:
+            # 定位项目输入框，输入项目编号，选择项目
+            ProjectElement = self.driver.find_element(By.XPATH, f"//tbody/tr[1]/td[1]/div/span/span[text()=' "+f"{ProjectNo}" + " ']")
+            if ProjectElement:
+                self.driver.find_element(By.XPATH, "//tbody/tr[1]/td[5]/div/button/span[text()='选择']").click()
+                time.sleep(2)
+                CoalSettlement.makedir_current_save_image(self, f"批量核销选择项目{CoalSettlement.timenow}.png")  # 保存截图
+        except NoSuchElementException as e:
+            print(f"项目编号不存在,未定位到元素{e}")
+        # 显式等待
+        # 结算单搜索按钮触发元素xpath
+        Settlement_search_xpath = "//div/span[@class='el-input__suffix']/span[@class='el-input__suffix-inner']/i[@class='el-icon-search cursor-pointer']"
+        WebDriverWait(self.driver, 10, 0.5).until(EC.presence_of_element_located((By.XPATH, Settlement_search_xpath)))
+        self.driver.find_element(By.XPATH, Settlement_search_xpath).click()
+        time.sleep(2)
+        SettlementNo = data['结算单编号'].values[0]
+        self.driver.find_element(By.XPATH, "//div[@class='el-input el-input--medium']/input[@placeholder='云星空结算单']").send_keys(SettlementNo)
+        try:
+            # 定位云星空结算单编号输入框，输入结算单编号，选择结算单
+            SettlementElement = WebDriverWait(self.driver, 10, 0.5).until(
+                EC.presence_of_element_located((By.XPATH, f"//tbody/tr[1]/td[1]/div/span/span[text()=' "+f"{SettlementNo}" + " ']")))
+            # SettlementElement = self.driver.find_element(By.XPATH, f"//tbody/tr[1]/td[1]/div/span/span[text()=' "+f"{SettlementNo}" + " ']")
+            if SettlementElement:
+                # 创建 ActionChains 对象
+                actions = ActionChains(self.driver)
+                actions.double_click(SettlementElement).perform()
+            time.sleep(2)
+            # 保存截图
+            CoalSettlement.makedir_current_save_image(self, f"选择金蝶结算单{CoalSettlement.timenow}.png")
+        except NoSuchElementException as e:
+            print(f"云星空结算单编号不存在,未定位到元素{e}")
 
 
 
