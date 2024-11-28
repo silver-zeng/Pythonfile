@@ -13,6 +13,7 @@ class Login():
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get("https://test.yiscs.cn/general/login")
+        self.driver.maximize_window()  # 最大化窗口
         time.sleep(randint(1, 3))
     def makedir_current_save_image(self,image_name):
         # 获取当前日期，并格式化为字符串（例如：2023-04-01）
@@ -37,7 +38,8 @@ class Login():
         tuling.send_keys('666888')
         LoginButton.click()
         time.sleep(3)
-        Login.makedir_current_save_image(self, "login_screenshot.png")
+        timenow = datetime.now().strftime("%Y%m%d%H%M%S")
+        Login.makedir_current_save_image(self, f"login_screenshot_{timenow}.png")
         # driver.save_screenshot("../TestImage/screenshot.png")  # 保存整个网页的截图
 
 Login().login("zengfanyu", "qwe123")
